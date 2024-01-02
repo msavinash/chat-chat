@@ -7,7 +7,7 @@ import re
 
 def preprocess(rawData):
     chatSplitPattern = "\d+/\d+/\d+, \d{1,2}:\d\d.*[ap]m - "
-    chats = re.split(chatSplitPattern, rawData)[1:]             # Get messages
+    chats = re.split(chatSplitPattern, rawData)[1:]
     # print(chats)
     for i in range(len(chats)):
         chats[i] = chats[i].replace("\n", " ")
