@@ -1,3 +1,9 @@
 venv
 chat.txt
 cleanedChat.txt
+__pycache__/
+cleanedChat - Copy.txt
+msavinash1139@gmail.com.txt
+msavinash1139@gmail.com/
+userFiles/
+vectorStores/

@@ -13,6 +13,17 @@ from langchain.text_splitter import CharacterTextSplitter
 from flask_cors import CORS
 
 
+USER_FILES = 'userFiles'
+VECTOR_STORES = 'vectorStores'
+
+# Create folders for storing user files and vector stores
+if not os.path.exists(USER_FILES):
+    os.makedirs(USER_FILES)
+if not os.path.exists(VECTOR_STORES):
+    os.makedirs(VECTOR_STORES)
+
+
+
 instructor_embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 api_key = os.environ.get('API_KEY')
 print(api_key)
@@ -29,14 +40,14 @@ def createVectorStore():
     chunkSize = int(request.form['chunkSize'])
     chatData = chatFile.read().decode('utf-8', errors="ignore")
     ascii_only = re.sub(r'[^\x00-\x7F]+', '', chatData)
-    with open(userId+".txt", "w") as f:
+    with open(os.path.join(USER_FILES, userId+".txt"), "w") as f:
         f.write(ascii_only)
-    loader = TextLoader(userId+".txt")
+    loader = TextLoader(os.path.join(USER_FILES, userId+".txt"))
     documents = loader.load()
     text_splitter = CharacterTextSplitter(chunk_size=chunkSize, chunk_overlap=0, separator="\n")
     docs = text_splitter.split_documents(documents)
     vectordb = FAISS.from_documents(documents=docs, embedding=instructor_embeddings)
-    vectordb.save_local(userId)
+    vectordb.save_local(os.path.join(VECTOR_STORES, userId))
     return jsonify({'status': 'success', "numDocs": len(docs)})
 
 
@@ -45,8 +56,8 @@ def createVectorStore():
 def getAnswer():
     data = request.form
     query = data['query']
-    userEmail = data['userId']
-    vectordb = FAISS.load_local(userEmail, embeddings=instructor_embeddings)
+    userId = data['userId']
+    vectordb = FAISS.load_local(os.path.join(VECTOR_STORES, userId), embeddings=instructor_embeddings)
     retriever = vectordb.as_retriever()
     chain = RetrievalQA.from_llm(llm=llm, retriever=retriever, return_source_documents=True)
     ans = chain(query)

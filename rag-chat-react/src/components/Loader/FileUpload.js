@@ -1,7 +1,17 @@
 import React from "react";
 import { Card, Space } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-import { Button, message, Upload, Tooltip, Col, Row } from "antd";
+import {
+  Button,
+  message,
+  Upload,
+  Tooltip,
+  Col,
+  Row,
+  Input,
+  Alert,
+  Form,
+} from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
 
 let chatFile = null;
@@ -12,6 +22,14 @@ const props = {
   headers: {
     authorization: "authorization-text",
   },
+  beforeUpload: (file) => {
+    const isTextFile = file.type === "text/plain";
+    if (!isTextFile) {
+      message.error(`${file.name} is not a text file (plain text)`);
+    }
+    return isTextFile || Upload.LIST_IGNORE;
+  },
+
   onChange(info) {
     if (info.file.status !== "uploading") {
       console.log(info.file, info.fileList);
@@ -25,52 +43,81 @@ const props = {
   },
 };
 
-const handleNextClick = (updateProcessState) => {
-  console.log("Next button clicked");
-  const email = "example@example.com";
-
-  if (chatFile && email) {
-    const formData = new FormData();
-    formData.append("chatFile", chatFile);
-    formData.append("userId", email);
-    formData.append("chunkSize", 100);
-
-    fetch("http://localhost:5000/createVectorStore", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Server response:", data);
-        updateProcessState("done");
-        // Handle response from server
-      })
-      .catch((error) => {
-        console.error("Error sending data to server:", error);
-        // Handle errors
-      });
-  } else {
-    console.error("File or email is missing.");
+const FileUpload = ({ updateProcessState, setUserInputState }) => {
+  function onFinish(values) {
+    console.log("Success:", values);
+    setUserInputState({
+      chatFile: values.chatFile.file.originFileObj,
+      // create user id with user email and current timestamp
+      userId: values.userEmail + "___" + Date.now(),
+    });
+    updateProcessState("loading");
   }
-};
 
-const FileUpload = ({ updateProcessState, setChatFileState }) => {
   console.log(updateProcessState);
   return (
     <Space direction="vertical" size={16}>
+      <Alert
+        message="Warning Text Warning Text Warning TextW arning Text Warning Text Warning TextWarning Text"
+        type="warning"
+        closable
+        // onClose={onClose}
+        style={{ visibility: "hidden" }}
+      />
       <Card
         title="Upload File"
         extra={<a href="#">More</a>}
         style={{ width: 250 }}
       >
         <Row>
+          <Col span={24}>
+            {/* <Input className="form-control" type="text" placeholder="Email" /> */}
+          </Col>
+        </Row>
+        <Row>
           <Col span={22}>
-            <Upload {...props}>
-              <Button icon={<UploadOutlined />}>Click to Upload</Button>
-            </Upload>
+            <Form onFinish={(values) => onFinish(values)}>
+              <Form.Item
+                name="userEmail"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your email!",
+                  },
+                ]}
+              >
+                <Input
+                  className="form-control"
+                  type="text"
+                  placeholder="Email"
+                />
+              </Form.Item>
+              <Form.Item
+                name="chatFile"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please upload a file!",
+                  },
+                ]}
+              >
+                <Upload {...props} maxCount={1}>
+                  <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                </Upload>
+              </Form.Item>
+
+              <Tooltip title="next">
+                <Button
+                  htmlType="submit"
+                  type="primary"
+                  shape="circle"
+                  icon={<ArrowRightOutlined />}
+                />
+              </Tooltip>
+            </Form>
           </Col>
           <Col span={2}>
-            <Tooltip title="next">
+            {/* <Tooltip title="next">
               <Button
                 type="primary"
                 shape="circle"
@@ -83,7 +130,7 @@ const FileUpload = ({ updateProcessState, setChatFileState }) => {
                   // handleFileUpload("done");
                 }}
               />
-            </Tooltip>
+            </Tooltip> */}
           </Col>
         </Row>
       </Card>
