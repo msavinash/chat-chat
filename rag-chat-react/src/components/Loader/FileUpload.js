@@ -1,5 +1,6 @@
 import React from "react";
-import { Card, Space } from "antd";
+import { Space } from "antd";
+import Card from "react-bootstrap/Card";
 import { UploadOutlined } from "@ant-design/icons";
 import {
   Button,
@@ -64,18 +65,12 @@ const FileUpload = ({ updateProcessState, setUserInputState }) => {
         // onClose={onClose}
         style={{ visibility: "hidden" }}
       />
-      <Card
-        title="Upload File"
-        extra={<a href="#">More</a>}
-        style={{ width: 250 }}
-      >
-        <Row>
-          <Col span={24}>
-            {/* <Input className="form-control" type="text" placeholder="Email" /> */}
-          </Col>
-        </Row>
-        <Row>
-          <Col span={22}>
+      <Card align="left" style={{ width: "40%" }}>
+        <Card.Header as="h5" align="center">
+          Chat Import
+        </Card.Header>
+        <Card.Body>
+          <Card.Text>
             <Form onFinish={(values) => onFinish(values)}>
               <Form.Item
                 name="userEmail"
@@ -92,47 +87,38 @@ const FileUpload = ({ updateProcessState, setUserInputState }) => {
                   placeholder="Email"
                 />
               </Form.Item>
-              <Form.Item
-                name="chatFile"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please upload a file!",
-                  },
-                ]}
-              >
-                <Upload {...props} maxCount={1}>
-                  <Button icon={<UploadOutlined />}>Click to Upload</Button>
-                </Upload>
-              </Form.Item>
-
-              <Tooltip title="next">
-                <Button
-                  htmlType="submit"
-                  type="primary"
-                  shape="circle"
-                  icon={<ArrowRightOutlined />}
-                />
-              </Tooltip>
+              <Row>
+                <Col span={20}>
+                  <Form.Item
+                    name="chatFile"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please upload a file!",
+                      },
+                    ]}
+                  >
+                    <Upload {...props}>
+                      <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                    </Upload>
+                  </Form.Item>
+                </Col>
+                <Col span={4}>
+                  <div className="mx-2">
+                    <Tooltip title="next">
+                      <Button
+                        htmlType="submit"
+                        type="primary"
+                        shape="circle"
+                        icon={<ArrowRightOutlined />}
+                      />
+                    </Tooltip>
+                  </div>
+                </Col>
+              </Row>
             </Form>
-          </Col>
-          <Col span={2}>
-            {/* <Tooltip title="next">
-              <Button
-                type="primary"
-                shape="circle"
-                icon={<ArrowRightOutlined />}
-                onClick={(e) => {
-                  setChatFileState(chatFile);
-                  updateProcessState("loading");
-                  // post request to the server
-                  // handleNextClick(updateProcessState);
-                  // handleFileUpload("done");
-                }}
-              />
-            </Tooltip> */}
-          </Col>
-        </Row>
+          </Card.Text>
+        </Card.Body>
       </Card>
     </Space>
   );

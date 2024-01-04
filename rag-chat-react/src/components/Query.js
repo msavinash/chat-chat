@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Card, Space } from "antd";
+import { Space } from "antd";
+import Card from "react-bootstrap/Card";
 import { UploadOutlined } from "@ant-design/icons";
 import {
   Spin,
@@ -27,6 +28,7 @@ const Query = ({ userId }) => {
   const onFinish = (values) => {
     // setQueryAnswer("");
     setLoading(true);
+    setQueryResult({ answer: "", docs: [] });
     console.log("Success:", values);
     const query = values.query;
     const formData = new FormData();
@@ -49,82 +51,75 @@ const Query = ({ userId }) => {
       });
   };
   return (
-    <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} style={{ width: "80%" }}>
-      <Col className="gutter-row" span={12}>
-        <Card title="Query">
-          <Row>
-            <Form
-              onFinish={(values) => onFinish(values)}
-              style={{ width: "100%" }}
-            >
-              <Row>
-                {/* <Space direction="horizontal" style={{ width: "100%" }}> */}
-                <Col className="gutter-row" span={20}>
-                  <Form.Item name="query" style={{ width: "80%" }}>
-                    <Input placeholder="Enter your query" />
-                  </Form.Item>
-                </Col>
-                <Col className="gutter-row" span={4}>
-                  <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                      Query
-                    </Button>
-                  </Form.Item>
-                </Col>
-                {/* </Space> */}
-              </Row>
-            </Form>
-            {/* <Col span={2}>
-                <Tooltip title="next">
-                  <Button
-                    type="primary"
-                    shape="circle"
-                    icon={<ArrowRightOutlined />}
-                    onClick={(e) => {
-                      // post request to the server
-                      console.log(Form.useForm());
-                      //   let query = doc;
-                      //   const formData = new FormData();
-                      //   formData.append("query");
-                      //   formData.append("userId", email);
-                      //   formData.append("chunkSize", 100);
-
-                      //   fetch("http://localhost:5000/createVectorStore", {
-                      //     method: "POST",
-                      //     body: formData,
-                      //   })
-                      //     .then((response) => response.json())
-                      //     .then((data) => {
-                      //       console.log("Server response:", data);
-                      //       updateProcessState("done");
-                      //       // Handle response from server
-                      //     })
-                      //     .catch((error) => {
-                      //       console.error("Error sending data to server:", error);
-                      //       // Handle errors
-                      //     });
-                      // handleNextClick(updateProcessState);
-                      // handleFileUpload("done");
-                    }}
-                  />
-                </Tooltip>
-              </Col> */}
-          </Row>
-          {/* <Row>
-            <Typical steps={[queryResult["answer"]]} loop={1} wrapper="p" />
-          </Row> */}
-          <Spin spinning={loading}>
-            <Row>
-              <Typical steps={[queryResult.answer]} loop={1} wrapper="p" />
-            </Row>
-          </Spin>
-        </Card>
-        {/* <Typewriter text={["", queryAnswer]} delay={10} /> */}
-      </Col>
-      <Col className="gutter-row" span={12}>
-        <SupportingDocuments documents={queryResult["docs"]} />
-      </Col>
-    </Row>
+    <>
+      <div style={{ fontFamily: "Rubik" }}>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        />
+        <div className="row" style={{ width: "80%" }}>
+          <div className="col-6">
+            <Card>
+              <Card.Header as="h5">Query</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <div className="row">
+                    <Form
+                      onFinish={(values) => onFinish(values)}
+                      style={{ width: "100%" }}
+                    >
+                      <div className="row">
+                        <div className="col-10" align="left">
+                          <Form.Item name="query" style={{ width: "100%" }}>
+                            <Input placeholder="Enter your query" />
+                          </Form.Item>
+                        </div>
+                        <div className="col-2">
+                          <Form.Item>
+                            <Button type="primary" htmlType="submit">
+                              Query
+                            </Button>
+                          </Form.Item>
+                        </div>
+                        {/* </Space> */}
+                      </div>
+                    </Form>
+                  </div>
+                  <div className="row">
+                    <div style={{ width: "100%" }} align="left">
+                      <Spin spinning={loading}>
+                        <div className="row">
+                          <div className="col-1">
+                            <div>
+                              <span class="material-symbols-outlined">
+                                smart_toy
+                              </span>
+                            </div>
+                          </div>
+                          <div className="col-11">
+                            <Typical
+                              steps={[queryResult.answer]}
+                              loop={1}
+                              wrapper="p"
+                            />
+                          </div>
+                        </div>
+                      </Spin>
+                    </div>
+                  </div>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </div>
+          <div className="col-6">
+            <SupportingDocuments
+              documents={queryResult["docs"]}
+              loading={loading}
+            />
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

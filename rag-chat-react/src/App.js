@@ -6,15 +6,23 @@ import FileUpload from "./components/Loader/FileUpload";
 import AppBody from "./AppBody";
 import { useState } from "react";
 import Query from "./components/Query";
+import "bootstrap/dist/css/bootstrap.min.css";
+// import "./custom.scss";
 
 const { Title } = Typography;
 
 const App = () => {
   return (
-    <div align="center">
-      <h1>RagChat</h1>
-      <AppBody />
-    </div>
+    <>
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Press+Start+2P&family=Rubik:wght@500&display=swap');
+      </style>
+      <div align="center" style={{ fontFamily: "Rubik !important" }}>
+        <h1 className="m-5">RagChat</h1>
+        <AppBody />
+      </div>
+    </>
   );
 };
 export default App;

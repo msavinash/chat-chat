@@ -2,9 +2,13 @@ import React from "react";
 import { UploadOutlined } from "@ant-design/icons";
 import { Button, message, Upload, Typography } from "antd";
 import Loader from "./components/Loader/Loader";
+import { helix } from "ldrs";
 import FileUpload from "./components/Loader/FileUpload";
 import { useState } from "react";
 import Query from "./components/Query";
+
+helix.register();
+const BASE_URL = "http://localhost:5000";
 
 const { Title } = Typography;
 
@@ -30,7 +34,7 @@ const AppBody = () => {
       formData.append("userId", userInput.userId);
       formData.append("chunkSize", 100);
 
-      fetch("http://localhost:5000/createVectorStore", {
+      fetch(BASE_URL + "/createVectorStore", {
         method: "POST",
         body: formData,
       })
@@ -48,7 +52,7 @@ const AppBody = () => {
       console.error("File or email is missing.");
     }
 
-    return <Loader />;
+    return <Loader style={{ width: "10%" }} />;
   } else if (processStatus === "new") {
     return (
       <div>
