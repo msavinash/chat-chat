@@ -18,7 +18,7 @@ import { TypeAnimation } from "react-type-animation";
 import Answer from "./Answer";
 import Typewriter from "react-ts-typewriter";
 import Typical from "react-typical";
-import SupportingDocuments from "./SupportingDocuments";
+import Source from "./Source";
 
 const Query = ({ userId }) => {
   const [queryResult, setQueryResult] = useState({ answer: "", docs: [] });
@@ -58,7 +58,7 @@ const Query = ({ userId }) => {
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         />
         <div className="row" style={{ width: "80%" }}>
-          <div className="col-6">
+          <div className="col-md-6 col-12 mb-3">
             <Card>
               <Card.Header as="h5">Query</Card.Header>
               <Card.Body>
@@ -68,13 +68,13 @@ const Query = ({ userId }) => {
                       onFinish={(values) => onFinish(values)}
                       style={{ width: "100%" }}
                     >
-                      <div className="row">
-                        <div className="col-10" align="left">
+                      <div className="row" style={{ width: "90%" }}>
+                        <div className="col-lg-10 col-md-8 col-12" align="left">
                           <Form.Item name="query" style={{ width: "100%" }}>
                             <Input placeholder="Enter your query" />
                           </Form.Item>
                         </div>
-                        <div className="col-2">
+                        <div className="col-lg-2 col-md-4 col-12">
                           <Form.Item>
                             <Button type="primary" htmlType="submit">
                               Query
@@ -85,6 +85,7 @@ const Query = ({ userId }) => {
                       </div>
                     </Form>
                   </div>
+                  <hr />
                   <div className="row">
                     <div style={{ width: "100%" }} align="left">
                       <Spin spinning={loading}>
@@ -111,11 +112,8 @@ const Query = ({ userId }) => {
               </Card.Body>
             </Card>
           </div>
-          <div className="col-6">
-            <SupportingDocuments
-              documents={queryResult["docs"]}
-              loading={loading}
-            />
+          <div className="col-md-6 col-12">
+            <Source documents={queryResult["docs"]} loading={loading} />
           </div>
         </div>
       </div>

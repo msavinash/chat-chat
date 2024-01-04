@@ -1,8 +1,15 @@
-// change the theme
-$theme-colors: (
-  "primary": #000000,
-  "danger": #ff4136
-);
+// // change the theme
+// $theme-colors: (
+//   "primary": #000000,
+//   "danger": #ff4136
+// );
 
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
+
+
+@media (min-width: 768px) {
+  .divider {
+    border-left: 3px solid #000; /* Add your desired border styles here */
+  }
+}
