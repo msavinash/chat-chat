@@ -28,9 +28,9 @@ const App = () => {
         <div align="center" style={{ fontFamily: "Rubik" }}>
           <div className="p-5">
             <h1 style={{ fontSize: "80px", margin: "auto" }}>
-              <strong>RagChat</strong>
+              <strong>RagChat.</strong>
             </h1>
-            <h3>Chat with your "chats" using AI</h3>
+            <h3>Chat with your conversations using AI</h3>
           </div>
 
           <AppBody />

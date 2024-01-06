@@ -65,7 +65,16 @@ const AppBody = () => {
             style={{ padding: "70px 0" }}
             align="left"
           >
-            <h3>&gt; Step 1: Upload a chat file</h3>
+            <h3>
+              &gt; Step 1: Upload a chat file (
+              <a
+                href="https://gist.github.com/msavinash/935617450c8c35aae91d541d677dc737"
+                target="_blank"
+              >
+                sample file
+              </a>
+              )
+            </h3>
             <h3>&gt; Step 2: Wait for vectorstore to be built</h3>
             <h3>&gt; Step 3: Ask a question</h3>
           </div>
