@@ -1,5 +1,5 @@
 import React from "react";
-import { Space } from "antd";
+import { Space, ConfigProvider } from "antd";
 import Card from "react-bootstrap/Card";
 import { UploadOutlined } from "@ant-design/icons";
 import {
@@ -50,14 +50,14 @@ const FileUpload = ({ updateProcessState, setUserInputState }) => {
     setUserInputState({
       chatFile: values.chatFile.file.originFileObj,
       // create user id with user email and current timestamp
-      userId: values.userEmail + "___" + Date.now(),
+      userId: Date.now(),
     });
     updateProcessState("loading");
   }
 
   console.log(updateProcessState);
   return (
-    <Space direction="vertical" size={16}>
+    <div style={{ margin: "auto" }}>
       <Alert
         message="Warning Text Warning Text Warning TextW arning Text Warning Text Warning TextWarning Text"
         type="warning"
@@ -65,14 +65,14 @@ const FileUpload = ({ updateProcessState, setUserInputState }) => {
         // onClose={onClose}
         style={{ visibility: "hidden" }}
       />
-      <Card align="left" style={{ width: "40%" }}>
+      <Card align="left" style={{ minWidth: "15rem" }}>
         <Card.Header as="h5" align="center">
           Chat Import
         </Card.Header>
         <Card.Body>
           <Card.Text>
             <Form onFinish={(values) => onFinish(values)}>
-              <Form.Item
+              {/* <Form.Item
                 name="userEmail"
                 rules={[
                   {
@@ -86,7 +86,7 @@ const FileUpload = ({ updateProcessState, setUserInputState }) => {
                   type="text"
                   placeholder="Email"
                 />
-              </Form.Item>
+              </Form.Item> */}
               <Row>
                 <Col span={20}>
                   <Form.Item
@@ -99,7 +99,9 @@ const FileUpload = ({ updateProcessState, setUserInputState }) => {
                     ]}
                   >
                     <Upload {...props}>
-                      <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                      <Button icon={<UploadOutlined />} type="default">
+                        Click to Upload
+                      </Button>
                     </Upload>
                   </Form.Item>
                 </Col>
@@ -120,7 +122,7 @@ const FileUpload = ({ updateProcessState, setUserInputState }) => {
           </Card.Text>
         </Card.Body>
       </Card>
-    </Space>
+    </div>
   );
 };
 

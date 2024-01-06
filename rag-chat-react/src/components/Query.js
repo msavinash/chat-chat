@@ -57,8 +57,8 @@ const Query = ({ userId }) => {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         />
-        <div className="row" style={{ width: "80%" }}>
-          <div className="col-md-6 col-12 mb-3">
+        <div className="row" style={{ width: "80%", height: "22rem" }}>
+          <div className="col-md-6 col-12 mb-3 divider pb-5">
             <Card>
               <Card.Header as="h5">Query</Card.Header>
               <Card.Body>

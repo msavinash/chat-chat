@@ -29,7 +29,7 @@ const Source = ({ documents, loading }) => {
     //     </Spin>
     //   </Card.Body>
     // </Card>
-    <div className="divider px-3">
+    <div className="px-3">
       <h4>Source</h4>
       <hr />
       <Spin spinning={loading}>

@@ -55,11 +55,27 @@ const AppBody = () => {
     return <Loader style={{ width: "10%" }} />;
   } else if (processStatus === "new") {
     return (
-      <div>
-        <FileUpload
-          updateProcessState={updateProcessState}
-          setUserInputState={setUserInputState}
-        />
+      <div className="row m-5">
+        <div
+          className="row main-body"
+          style={{ height: "22rem", margin: "auto" }}
+        >
+          <div
+            className="col-md-6 col-12 mb-3 divider pb-5"
+            style={{ padding: "70px 0" }}
+            align="left"
+          >
+            <h3>&gt; Step 1: Upload a chat file</h3>
+            <h3>&gt; Step 2: Wait for vectorstore to be built</h3>
+            <h3>&gt; Step 3: Ask a question</h3>
+          </div>
+          <div className="col-md-6 col-12 px-5">
+            <FileUpload
+              updateProcessState={updateProcessState}
+              setUserInputState={setUserInputState}
+            />
+          </div>
+        </div>
       </div>
     );
   } else if (processStatus === "done") {

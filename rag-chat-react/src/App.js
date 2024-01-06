@@ -1,6 +1,6 @@
 import React from "react";
 import { UploadOutlined } from "@ant-design/icons";
-import { Button, message, Upload, Typography } from "antd";
+import { Button, message, Upload, Typography, ConfigProvider } from "antd";
 import Loader from "./components/Loader/Loader";
 import FileUpload from "./components/Loader/FileUpload";
 import AppBody from "./AppBody";
@@ -14,14 +14,28 @@ const { Title } = Typography;
 const App = () => {
   return (
     <>
-      <style>
-        @import
-        url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Press+Start+2P&family=Rubik:wght@500&display=swap');
-      </style>
-      <div align="center" style={{ fontFamily: "Rubik" }}>
-        <h1 className="m-5">RagChat</h1>
-        <AppBody />
-      </div>
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#000000",
+          },
+        }}
+      >
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Press+Start+2P&family=Rubik:wght@500&display=swap');
+        </style>
+        <div align="center" style={{ fontFamily: "Rubik" }}>
+          <div className="p-5">
+            <h1 style={{ fontSize: "80px", margin: "auto" }}>
+              <strong>RagChat</strong>
+            </h1>
+            <h3>Chat with your "chats" using AI</h3>
+          </div>
+
+          <AppBody />
+        </div>
+      </ConfigProvider>
     </>
   );
 };
