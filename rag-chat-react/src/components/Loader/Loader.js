@@ -21,7 +21,8 @@ const Loader = () => {
       </div>
       <div className="m-5" style={{ fontSize: "2em" }}>
         {/* <Typical steps={loadingText} loop={Infinity} wrapper="p" /> */}
-        <span>Creating vector database...</span>
+        <span>Creating vector database</span>
+        <span class="ellipsis">...</span>
       </div>
     </div>
   );

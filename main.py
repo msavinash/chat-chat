@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-from modules import getAnswer, getSimilarDocuments, uploadDocument, preprocessChatData
 import re
 import os
 from pprint import pprint
@@ -32,6 +31,11 @@ llm = GooglePalm(google_api_key=api_key, temperature=0.9)
 
 app = Flask(__name__)
 CORS(app)
+
+
+@app.route("/ping", methods=["GET"])
+def ping():
+    return jsonify({"status": "success", "message": "pong"})
 
 @app.route('/createVectorStore', methods=['POST'])
 def createVectorStore():
@@ -73,4 +77,4 @@ def getAnswer():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=80)

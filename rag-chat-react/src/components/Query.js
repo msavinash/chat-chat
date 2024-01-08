@@ -71,7 +71,7 @@ const Query = ({ userId }) => {
                       <div className="row" style={{ width: "90%" }}>
                         <div className="col-lg-10 col-md-8 col-12" align="left">
                           <Form.Item name="query" style={{ width: "100%" }}>
-                            <Input placeholder="Enter your query" />
+                            <Input placeholder="Who uses spotify?" />
                           </Form.Item>
                         </div>
                         <div className="col-lg-2 col-md-4 col-12">
