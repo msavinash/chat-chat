@@ -84,7 +84,13 @@ const AppBody = () => {
             <h5>&gt; Step 2: Wait for vectorstore to be built</h5>
             <h5>&gt; Step 3: Ask a question</h5>
           </div>
-          <div className="col-md-6 col-12 px-md-5">
+          <div
+            className="col-md-6 col-12 px-md-5"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <FileUpload
               updateProcessState={updateProcessState}
               setUserInputState={setUserInputState}

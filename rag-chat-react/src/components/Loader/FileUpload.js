@@ -57,7 +57,7 @@ const FileUpload = ({ updateProcessState, setUserInputState }) => {
 
   console.log(updateProcessState);
   return (
-    <div style={{ margin: "auto" }}>
+    <div style={{ margin: "auto", marginTop: "10%" }}>
       <Alert
         message="Warning Text Warning Text Warning TextW arning Text Warning Text Warning TextWarning Text"
         type="warning"

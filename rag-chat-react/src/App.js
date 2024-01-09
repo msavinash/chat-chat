@@ -33,7 +33,7 @@ const App = () => {
             <h3>Chat with your conversations using AI</h3>
           </div>
 
-          <div className="m-5">
+          <div className="mt-5">
             <AppBody />
           </div>
         </div>
