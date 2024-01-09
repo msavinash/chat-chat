@@ -65,7 +65,7 @@ const FileUpload = ({ updateProcessState, setUserInputState }) => {
         // onClose={onClose}
         style={{ visibility: "hidden" }}
       />
-      <Card align="left" style={{ minWidth: "15rem" }}>
+      <Card align="left" style={{ minWidth: "10rem" }}>
         <Card.Header as="h5" align="center">
           Chat Import
         </Card.Header>

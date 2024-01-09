@@ -26,7 +26,7 @@ const App = () => {
           url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Press+Start+2P&family=Rubik:wght@500&display=swap');
         </style>
         <div align="center" style={{ fontFamily: "Rubik" }}>
-          <div className="p-5">
+          <div className="pt-5 px-2">
             <h1 style={{ fontSize: "80px", margin: "auto" }}>
               <strong>RagChat.</strong>
             </h1>

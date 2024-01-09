@@ -20,6 +20,9 @@ import Typewriter from "react-ts-typewriter";
 import Typical from "react-typical";
 import Source from "./Source";
 
+// const BASE_URL = "http://localhost:5000";
+const BASE_URL = "http://172.178.77.50";
+
 const Query = ({ userId }) => {
   const [queryResult, setQueryResult] = useState({ answer: "", docs: [] });
   const [loading, setLoading] = useState(false);
@@ -34,7 +37,7 @@ const Query = ({ userId }) => {
     const formData = new FormData();
     formData.append("query", query);
     formData.append("userId", userId);
-    fetch("http://localhost:5000/getAnswer", {
+    fetch(BASE_URL + "/getAnswer", {
       method: "POST",
       body: formData,
     })
