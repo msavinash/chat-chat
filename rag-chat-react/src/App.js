@@ -33,7 +33,9 @@ const App = () => {
             <h3>Chat with your conversations using AI</h3>
           </div>
 
-          <AppBody />
+          <div className="m-5">
+            <AppBody />
+          </div>
         </div>
       </ConfigProvider>
     </>

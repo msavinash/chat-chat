@@ -21,7 +21,8 @@ import Typical from "react-typical";
 import Source from "./Source";
 
 // const BASE_URL = "http://localhost:5000";
-const BASE_URL = "http://172.178.77.50";
+// const BASE_URL = "http://172.178.77.50";
+const BASE_URL = "https://ragchat.ddns.net:80";
 
 const Query = ({ userId }) => {
   const [queryResult, setQueryResult] = useState({ answer: "", docs: [] });
@@ -80,7 +81,7 @@ const Query = ({ userId }) => {
                         <div className="col-lg-2 col-md-4 col-12">
                           <Form.Item>
                             <Button type="primary" htmlType="submit">
-                              Query
+                              Go
                             </Button>
                           </Form.Item>
                         </div>
