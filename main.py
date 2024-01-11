@@ -10,7 +10,17 @@ from langchain.document_loaders import TextLoader
 from langchain.text_splitter import CharacterTextSplitter
 # cors flask import 
 from flask_cors import CORS
+from langchain.prompts import PromptTemplate
 
+PROMPT_TEMPLATE = """Given the following context and question, generate an answer based on this context. Try to add reasons and explanations to your answer. 
+                    If the answer is not found in the context, kindly state "I don't know", "I couldn't find this information" or similar phrases.
+                    Be gramatically correct with your answer.
+
+                    Context: {context}
+                    Question: {question}
+                    """
+
+PROMPT_TEMPLATE = PromptTemplate(template=PROMPT_TEMPLATE, input_variables=["context", "question"])
 
 USER_FILES = 'userFiles'
 VECTOR_STORES = 'vectorStores'
@@ -27,7 +37,7 @@ instructor_embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 api_key = os.environ.get('API_KEY')
 print(api_key)
 
-llm = GooglePalm(google_api_key=api_key, temperature=0.9)
+llm = GooglePalm(google_api_key=api_key, temperature=0.3)
 
 app = Flask(__name__)
 CORS(app)
@@ -62,11 +72,12 @@ def getAnswer():
     query = data['query']
     userId = data['userId']
     vectordb = FAISS.load_local(os.path.join(VECTOR_STORES, userId), embeddings=instructor_embeddings)
-    retriever = vectordb.as_retriever()
-    chain = RetrievalQA.from_llm(llm=llm, retriever=retriever, return_source_documents=True)
+    retriever = vectordb.as_retriever(search_kwargs={"k": 10})
+    # chain = RetrievalQA.from_llm(llm=llm, retriever=retriever, return_source_documents=True, combine_docs_chain_kwargs={"prompt_template": PROMPT_TEMPLATE})
+    chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever, return_source_documents=True, input_key="query", chain_type_kwargs={"prompt": PROMPT_TEMPLATE})
     ans = chain(query)
-    # pprint(ans)
-    # print("-"*100)
+    pprint(ans)
+    print("-"*100)
     # print(dir(ans["source_documents"][0]))
     # print("-"*100)
     for index, doc in enumerate(ans["source_documents"]):

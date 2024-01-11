@@ -8,7 +8,7 @@ import { useState } from "react";
 import Query from "./components/Query";
 
 helix.register();
-// const BASE_URL = "http://localhost:5000";
+// const BASE_URL = "http://localhost:80";
 // const BASE_URL = "http://172.178.77.50";
 const BASE_URL = "https://ragchat.ddns.net:80";
 
@@ -100,7 +100,7 @@ const AppBody = () => {
       </div>
     );
   } else if (processStatus === "done") {
-    return <Query userId={userInput.userId} />;
+    return <Query userId={userInput.userId} BASE_URL={BASE_URL} />;
   }
 };
 export default AppBody;

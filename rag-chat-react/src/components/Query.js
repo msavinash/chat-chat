@@ -20,13 +20,14 @@ import Typewriter from "react-ts-typewriter";
 import Typical from "react-typical";
 import Source from "./Source";
 
-// const BASE_URL = "http://localhost:5000";
-// const BASE_URL = "http://172.178.77.50";
-const BASE_URL = "https://ragchat.ddns.net:80";
+// // const BASE_URL = "http://localhost:5000";
+// // const BASE_URL = "http://172.178.77.50";
+// const BASE_URL = "https://ragchat.ddns.net:80";
 
-const Query = ({ userId }) => {
+const Query = ({ userId, BASE_URL }) => {
   const [queryResult, setQueryResult] = useState({ answer: "", docs: [] });
   const [loading, setLoading] = useState(false);
+  const [seed, setSeed] = useState(1);
   // const [queryAnswer, setQueryAnswer] = useState("");
   // const [docs, setDocs] = useState([]);
   const onFinish = (values) => {
@@ -46,6 +47,7 @@ const Query = ({ userId }) => {
       .then((data) => {
         setLoading(false);
         setQueryResult({ answer: data.result, docs: data.source_documents });
+        setSeed(Math.random());
         //   updateProcessState("done");
         // Handle response from server
       })
@@ -102,10 +104,16 @@ const Query = ({ userId }) => {
                             </div>
                           </div>
                           <div className="col-11">
-                            <Typical
-                              steps={[queryResult.answer]}
-                              loop={1}
+                            <TypeAnimation
+                              key={seed}
+                              sequence={[queryResult.answer]}
                               wrapper="p"
+                              speed={50}
+                              style={{
+                                fontSize: "1rem",
+                                display: "inline-block",
+                              }}
+                              repeat={1}
                             />
                           </div>
                         </div>
@@ -116,7 +124,7 @@ const Query = ({ userId }) => {
               </Card.Body>
             </Card>
           </div>
-          <div className="col-md-6 col-12">
+          <div className="col-md-6 col-12" style={{ height: "100%" }}>
             <Source documents={queryResult["docs"]} loading={loading} />
           </div>
         </div>
