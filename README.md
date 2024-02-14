@@ -4,6 +4,12 @@
 
 This project is a RAG-based AI search application designed for analyzing private chat data. By utilizing Retrieval-Augmented Generative (RAG) models, the system can get insights from private conversations, which conventional Large Language Models (LLMs) lack training on, all without requiring significant resources for fine-tuning. The application uses [FAISS](https://github.com/facebookresearch/faiss) for vector storage, HuggingFaceEmbeddings with "all-MiniLM-L6-v2" model for semantic LLM embedding, with Google PaLM 2 LLM for inference.
 
+## Demo
+Explore the RagChat application [here](https://rag-chat-seven.vercel.app/)
+
+https://github.com/msavinash/rag-chat/assets/73682349/e4f34323-2e75-40eb-9c35-b4eb0ea485c6
+
+
 ## Functionality
 
 - Upload a chat conversation file in ".txt" format.
@@ -15,10 +21,6 @@ This project is a RAG-based AI search application designed for analyzing private
 - **Accessibility of Data:** Platforms like WhatsApp facilitate the export of chat data as text files.
 - **Application Development:** The aim was to develop and deploy an application capable of leveraging this data to respond to user queries effectively.
 
-## Demo
-Explore the RagChat application [here](https://rag-chat-seven.vercel.app/)
-
-https://github.com/msavinash/rag-chat/assets/73682349/e4f34323-2e75-40eb-9c35-b4eb0ea485c6
 
 
 ## How to Run
