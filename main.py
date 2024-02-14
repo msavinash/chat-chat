@@ -37,7 +37,7 @@ os.makedirs(VECTOR_STORES, exist_ok=True)
 
 instructor_embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 # api_key = os.environ.get('API_KEY')
-API_KEY = "AIzaSyALSf_kKiLwrUhlUR2I8BqoxObFJY07TbU"
+API_KEY = ""            # "YOUR_API KEY_HERE
 # print(api_key)
 
 llm = GooglePalm(google_api_key=API_KEY, temperature=0.3)
