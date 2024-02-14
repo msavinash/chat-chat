@@ -1,18 +1,7 @@
 import React from "react";
-import { Space, ConfigProvider } from "antd";
 import Card from "react-bootstrap/Card";
 import { UploadOutlined } from "@ant-design/icons";
-import {
-  Button,
-  message,
-  Upload,
-  Tooltip,
-  Col,
-  Row,
-  Input,
-  Alert,
-  Form,
-} from "antd";
+import { Button, message, Upload, Tooltip, Col, Row, Alert, Form } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
 
 let chatFile = null;

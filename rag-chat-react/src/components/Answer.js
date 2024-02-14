@@ -1,8 +1,4 @@
 import React from "react";
-import Typist from "react-typist";
-import TypingAnimator from "react-typing-animator";
-import { TypeAnimation } from "react-type-animation";
-import { useState } from "react";
 import Typewriter from "react-ts-typewriter";
 
 const Answer = ({ text }) => {

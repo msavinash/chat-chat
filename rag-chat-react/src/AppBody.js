@@ -1,6 +1,4 @@
 import React from "react";
-import { UploadOutlined } from "@ant-design/icons";
-import { Button, message, Upload, Typography } from "antd";
 import Loader from "./components/Loader/Loader";
 import { helix } from "ldrs";
 import FileUpload from "./components/Loader/FileUpload";
@@ -8,11 +6,7 @@ import { useState } from "react";
 import Query from "./components/Query";
 
 helix.register();
-// const BASE_URL = "http://localhost:80";
-// const BASE_URL = "http://172.178.77.50";
-const BASE_URL = "https://ragchat.ddns.net:80";
-
-const { Title } = Typography;
+const BASE_URL = "http://localhost:5000";
 
 const AppBody = () => {
   let [processStatus, setProcessStatus] = useState("new");

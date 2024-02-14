@@ -1,15 +1,8 @@
 import React from "react";
-import { UploadOutlined } from "@ant-design/icons";
-import { Button, message, Upload, Typography, ConfigProvider } from "antd";
-import Loader from "./components/Loader/Loader";
-import FileUpload from "./components/Loader/FileUpload";
+import { ConfigProvider } from "antd";
 import AppBody from "./AppBody";
-import { useState } from "react";
-import Query from "./components/Query";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./custom.scss";
-
-const { Title } = Typography;
 
 const App = () => {
   return (

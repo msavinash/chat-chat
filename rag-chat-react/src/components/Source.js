@@ -1,14 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Spin } from "antd";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import { UploadOutlined } from "@ant-design/icons";
-import { Button, message, Upload, Tooltip, Col, Row, Form, Input } from "antd";
-import { ArrowRightOutlined } from "@ant-design/icons";
-import { TypeAnimation } from "react-type-animation";
-import Answer from "./Answer";
-import Typewriter from "react-ts-typewriter";
-import Typical from "react-typical";
 
 const Source = ({ documents, loading }) => {
   console.log("DOCUMENTS: " + documents);

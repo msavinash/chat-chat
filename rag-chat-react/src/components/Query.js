@@ -1,23 +1,7 @@
 import React, { useState } from "react";
-import { Space } from "antd";
 import Card from "react-bootstrap/Card";
-import { UploadOutlined } from "@ant-design/icons";
-import {
-  Spin,
-  Button,
-  message,
-  Upload,
-  Tooltip,
-  Col,
-  Row,
-  Form,
-  Input,
-} from "antd";
-import { ArrowRightOutlined } from "@ant-design/icons";
+import { Spin, Button, Form, Input } from "antd";
 import { TypeAnimation } from "react-type-animation";
-import Answer from "./Answer";
-import Typewriter from "react-ts-typewriter";
-import Typical from "react-typical";
 import Source from "./Source";
 
 // // const BASE_URL = "http://localhost:5000";

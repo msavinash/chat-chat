@@ -1,19 +1,8 @@
 import "./Loader.css";
 import React from "react";
-import { Row, Col } from "antd";
 import "ldrs/helix";
-import { infinity } from "ldrs";
-import Typical from "react-typical";
 
 const Loader = () => {
-  const loadingText = [
-    "Loading text...",
-    2000,
-    "Converting into vectors...",
-    2000,
-    "Building vector store...",
-    2000,
-  ];
   return (
     <div>
       <div aria-live="polite" className="m-5">
