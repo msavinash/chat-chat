@@ -7,7 +7,7 @@ import Query from "./components/Query";
 
 helix.register();
 // const BASE_URL = "http://localhost:5000";
-const BASE_URL = "https://ragchat.ddns.net:80";
+const BASE_URL = "https://ragchat.ddns.net";
 
 const AppBody = () => {
   let [processStatus, setProcessStatus] = useState("new");
